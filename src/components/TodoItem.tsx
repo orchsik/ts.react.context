@@ -1,0 +1,21 @@
+import React, { ReactElement } from 'react';
+import './TodoItem.css';
+
+type TodoItemProps = {
+  todo: {
+    id: number;
+    text: string;
+    done: boolean;
+  };
+};
+
+function TodoItem({ todo }: TodoItemProps): ReactElement {
+  return (
+    <li className={`TodoItem ${todo.done ? 'done' : ''}`}>
+      <span className="text">{todo.text}</span>
+      <span className="remove">(X)</span>
+    </li>
+  );
+}
+
+export default TodoItem;
