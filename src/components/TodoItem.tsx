@@ -1,19 +1,33 @@
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
+
 import './TodoItem.css';
+import { useTodosDispatch, Todo } from '../context/TodosContext';
 
-type TodoItemProps = {
-  todo: {
-    id: number;
-    text: string;
-    done: boolean;
+function TodoItem({ todo }: { todo: Todo }): ReactElement {
+  const dispatch = useTodosDispatch();
+
+  const onToggle = () => {
+    dispatch({
+      type: 'TOGGLE',
+      id: todo.id,
+    });
   };
-};
 
-function TodoItem({ todo }: TodoItemProps): ReactElement {
+  const onRemove = () => {
+    dispatch({
+      type: 'REMOVE',
+      id: todo.id,
+    });
+  };
+
   return (
     <li className={`TodoItem ${todo.done ? 'done' : ''}`}>
-      <span className="text">{todo.text}</span>
-      <span className="remove">(X)</span>
+      <span className="text" onClick={onToggle}>
+        {todo.text}
+      </span>
+      <span className="remove" onClick={onRemove}>
+        (X)
+      </span>
     </li>
   );
 }

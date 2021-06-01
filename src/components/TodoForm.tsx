@@ -1,11 +1,18 @@
 import { FormEvent, ReactElement, useState } from 'react';
 
+import { useTodosDispatch } from '../context/TodosContext';
+
 function TodoForm(): ReactElement {
+  const dispatch = useTodosDispatch();
+
   const [value, setValue] = useState('');
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
-    // TODO: 새 항목 생성하기
+    dispatch({
+      type: 'CREATE',
+      text: value,
+    });
     setValue('');
   };
 

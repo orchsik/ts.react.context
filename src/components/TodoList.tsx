@@ -1,24 +1,10 @@
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
+
+import { useTodosState } from '../context/TodosContext';
 import TodoItem from './TodoItem';
 
 function TodoList(): ReactElement {
-  const todos = [
-    {
-      id: 1,
-      text: 'Context API 배우기',
-      done: true,
-    },
-    {
-      id: 2,
-      text: 'Typescript 배우기',
-      done: true,
-    },
-    {
-      id: 3,
-      text: 'Typescript 와 Context API 함께 사용하기',
-      done: false,
-    },
-  ];
+  const todos = useTodosState();
 
   return (
     <ul>
